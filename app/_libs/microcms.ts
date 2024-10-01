@@ -21,7 +21,7 @@ export type News = {
   description: string;
   content: string;
   thumbnail?: MicroCMSImage;
-  createdAt?: string;
+  createdAt: string;
   category: Category;
 } & MicroCMSListContent;
 
@@ -52,4 +52,16 @@ export const getNewsList = async (queries?: MicroCMSQueries) => {
     queries,
   });
   return listData;
+};
+
+export const getNewsDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<News>({
+    endpoint: "news",
+    contentId,
+    queries,
+  });
+  return detailData;
 };
